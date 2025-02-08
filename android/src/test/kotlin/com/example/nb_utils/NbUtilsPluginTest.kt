@@ -5,23 +5,22 @@ import io.flutter.plugin.common.MethodChannel
 import kotlin.test.Test
 import org.mockito.Mockito
 
-/*
- * This demonstrates a simple unit test of the Kotlin portion of this plugin's implementation.
- *
- * Once you have built the plugin's example app, you can run these tests from the command
- * line by running `./gradlew testDebugUnitTest` in the `example/android/` directory, or
- * you can run them directly from IDEs that support JUnit such as Android Studio.
- */
-
 internal class NbUtilsPluginTest {
-  @Test
-  fun onMethodCall_getPlatformVersion_returnsExpectedValue() {
-    val plugin = NbUtilsPlugin()
 
-    val call = MethodCall("getPlatformVersion", null)
-    val mockResult: MethodChannel.Result = Mockito.mock(MethodChannel.Result::class.java)
-    plugin.onMethodCall(call, mockResult)
+    @Test
+    fun onMethodCall_getPlatformVersion_returnsExpectedValue() {
+        val plugin = NbUtilsPlugin()
 
-    Mockito.verify(mockResult).success("Android " + android.os.Build.VERSION.RELEASE)
-  }
+        // Creating MethodCall with the proper method name
+        val call = MethodCall("getPlatformVersion", null)
+        
+        // Mocking the result of the MethodChannel
+        val mockResult: MethodChannel.Result = Mockito.mock(MethodChannel.Result::class.java)
+        
+        // Making the method call
+        plugin.onMethodCall(call, mockResult)
+
+        // Verifying that the correct response is passed back to the MethodChannel result
+        Mockito.verify(mockResult).success("Android " + android.os.Build.VERSION.RELEASE)
+    }
 }
